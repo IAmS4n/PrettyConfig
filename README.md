@@ -9,28 +9,29 @@ Latest PyPI stable release
 pip install --user PrettyConfig
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Usage
+Basic Usage
 ------------
-Define and print
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-from PrettyConfig import HyperParameters
+Define and Print
+.. code:: python
 
-class Configuration(HyperParameters):
-    modelname = "Example"
-    class modules(HyperParameters):
-        names = ["m1", "m2"]
-        path = "/tmp/c"
-    class saving(HyperParameters): 
-        class log(HyperParameters):
-            path = "/tmp/a/"
-            max_size = 100
-        class data(HyperParameters):
-            path = "/tmp/b/"
-            max_size = 200
+    from PrettyConfig import HyperParameters
+    
+    class Configuration(HyperParameters):
+        modelname = "Example"
+        class modules(HyperParameters):
+            names = ["m1", "m2"]
+            path = "/tmp/c"
+        class saving(HyperParameters): 
+            class log(HyperParameters):
+                path = "/tmp/a/"
+                max_size = 100
+            class data(HyperParameters):
+                path = "/tmp/b/"
+                max_size = 200
+    
+    config_obj = Configuration()
+    print(config_obj)
 
-config_obj = Configuration()
-print(config_obj)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 ├──> modelname:Example
 ├──saving
@@ -45,10 +46,60 @@ print(config_obj)
    └──> path:/tmp/c
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 Save
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-config_obj.save(saving path)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code:: python
+
+    config_obj.save(saving path)
+
+
 Load
+
+.. code:: python
+
+    loaded_config_obj = Configuration(path)
+
+
+Hyper-parameter Searching 
+------------
+Type of searchable hyper-parameters is ``ChoiceList``. When declaring a list of variable as ``ChoiceList``, you can make all possible config. In this way, you can use single for instead of nested for!
+.. code:: python
+
+    from PrettyConfig import HyperParameters, ChoiceList, get_possible_hyper_parameters
+    
+    class Configuration(HyperParameters):
+        constval = 10
+        param_a = ChoiceList([1,2])
+        param_b = ChoiceList([3,4,5])
+    
+    config_obj = Configuration()
+    configs = get_possible_hyper_parameters(config_obj)
+    for config in configs:
+        print(" ")
+        print(config)
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-loaded_config_obj = Configuration(path)
+├──> param_a:1
+├──> param_b:3
+└──> constval:10
+ 
+├──> param_a:2
+├──> param_b:3
+└──> constval:10
+ 
+├──> param_a:1
+├──> param_b:4
+└──> constval:10
+ 
+├──> param_a:2
+├──> param_b:4
+└──> constval:10
+ 
+├──> param_a:1
+├──> param_b:5
+└──> constval:10
+ 
+├──> param_a:2
+├──> param_b:5
+└──> constval:10
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
