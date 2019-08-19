@@ -47,12 +47,12 @@ print(config_obj)
 
 Save:
 ```python
-    config_obj.save(saving path)
+config_obj.save(saving path)
 ```
 
 Load:
 ```python
-    loaded_config_obj = Configuration(path)
+loaded_config_obj = Configuration(path)
 ```
 
 Hyper-parameter Searching 
