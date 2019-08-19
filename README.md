@@ -11,7 +11,7 @@ pip install --user PrettyConfig
 
 Basic Usage
 ------------
-Define and Print
+Define and Print:
 ```python
 from PrettyConfig import HyperParameters
 
@@ -44,18 +44,16 @@ print(config_obj)
    ├──> names:['m1', 'm2']
    └──> path:/tmp/c
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-Save
-.. code:: python
 
+Save:
+```python
     config_obj.save(saving path)
+```
 
-
-Load
-
-.. code:: python
-
+Load:
+```python
     loaded_config_obj = Configuration(path)
-
+```
 
 Hyper-parameter Searching 
 ------------
@@ -98,6 +96,5 @@ for config in configs:
 ├──> param_a:2
 ├──> param_b:5
 └──> constval:10
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
