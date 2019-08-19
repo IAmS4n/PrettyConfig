@@ -13,18 +13,18 @@ Basic Usage
 ------------
 Define and Print:
 ```python
-from PrettyConfig import HyperParameters
+from PrettyConfig import HyperParameters as HP
 
-class Configuration(HyperParameters):
+class Configuration(HP):
     modelname = "Example"
-    class modules(HyperParameters):
+    class modules(HP):
         names = ["m1", "m2"]
         path = "/tmp/c"
-    class saving(HyperParameters): 
-        class log(HyperParameters):
+    class saving(HP): 
+        class log(HP):
             path = "/tmp/a/"
             max_size = 100
-        class data(HyperParameters):
+        class data(HP):
             path = "/tmp/b/"
             max_size = 200
 
