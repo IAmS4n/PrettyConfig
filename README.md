@@ -17,6 +17,9 @@ from PrettyConfig import HyperParameters
 
 class Configuration(HyperParameters):
     modelname = "Example"
+    class modules(HyperParameters):
+        names = ["m1", "m2"]
+        path = "/tmp/c"
     class saving(HyperParameters): 
         class log(HyperParameters):
             path = "/tmp/a/"
@@ -24,9 +27,6 @@ class Configuration(HyperParameters):
         class data(HyperParameters):
             path = "/tmp/b/"
             max_size = 200
-    class modules(HyperParameters):
-        names = ["m1", "m2"]
-        path = "/tmp/c"
 
 config_obj = Configuration()
 print(config_obj)
@@ -50,5 +50,5 @@ config_obj.save(saving path)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 Load
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-loaded_config_obj = ModelHyperParameters(path)
+loaded_config_obj = Configuration(path)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
